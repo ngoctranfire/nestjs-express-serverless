@@ -1,0 +1,86 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AppMetadata {
+  provider: String!
+  providers: [String!]!
+}
+
+type IdentityData {
+  sub: String!
+}
+
+type Identity {
+  id: String!
+  user_id: String!
+  identity_data: IdentityData!
+  provider: String!
+  last_sign_in_at: Date!
+  created_at: Date!
+  updated_at: Date!
+}
+
+type UserMetadata {
+  noValue: String!
+}
+
+type User {
+  id: String!
+  aud: String!
+  role: String!
+  email: String!
+  phone: String!
+  phone_confirmed_at: Date!
+  confirmation_sent_at: Date!
+  last_sign_in_at: Date!
+  app_metadata: AppMetadata!
+  user_metadata: UserMetadata!
+  identities: [Identity!]!
+  created_at: Date!
+  updated_at: String!
+}
+
+type Session {
+  access_token: String!
+  token_type: String!
+  expires_in: Float!
+  refresh_token: String!
+  user: User!
+  expires_at: Float!
+}
+
+type ErrorResponse {
+  message: String
+  name: String
+}
+
+type AuthResponse {
+  error: ErrorResponse
+  user: User
+  session: Session
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  authCheck: Boolean!
+  user: User!
+  session: Session!
+}
+
+type Mutation {
+  phoneAuth(params: PhoneCredentialsInput!): Boolean!
+  phoneVerify(params: PhoneVerificationInput!): AuthResponse!
+  refreshSession(refreshToken: String!): AuthResponse!
+}
+
+input PhoneCredentialsInput {
+  phone: String!
+}
+
+input PhoneVerificationInput {
+  phone: String!
+  code: String!
+}

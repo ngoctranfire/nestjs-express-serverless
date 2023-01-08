@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  schemas  = ["public"]
+}
+
+ model Test {
+   id                           Int             @id @default(autoincrement())
+   email                        String          @unique
+   createdAt                    DateTime        @default(now())
+   @@schema("public")
+ }

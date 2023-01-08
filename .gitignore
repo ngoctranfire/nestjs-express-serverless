@@ -5,6 +5,7 @@
 
 # Credentials
 .aws/credentials
+.env
 
 # Logs
 logs

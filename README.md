@@ -6,7 +6,6 @@ Serverless app with Nest.JS with the Express adapter;
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository, with Fastify, Serverless.
 
 This project also uses webpack to bundle the project to improve cold-start times.
-
 ## Installation
 
 ```bash
